@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'main/layout.html' %}
+{% load socialaccount %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% block content %}
+<style>
+    .login {margin: 30px}
+    .reg { margin-bottom: 40px }
+</style>
+    <div class="login">
+        <h1 class="reg">Sign in</h1>
+        <form class="box" action="" method="post">
+            {% csrf_token %}
+            {% if not user.is_authenticated %}
+            {{ confirmation }}
+                {{ form.as_p }}
+
+            <div class="buttons">
+                <button class="btn btn-outline-success" type="submit">Войти</button>
+                <button class="btn btn-outline-info">
+                        <a href="{% provider_login_url 'google'%}?next=/">
+                            <i class="fab fa-google"></i>
+                            Login with Google
+                        </a>
+                    </button>
+            {% else %}
+                <h1>You are already signed in as: {{ request.user }}</h1>
+                To logout: <a href="{% url 'logout' %}">Logout</a>
+            {% endif %}
+
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<style>
+        .box{
+                margin-top: 30px;
+                margin-left: 30px
+        }
+</style>
+   <div class="box">
+        <h1>User: {{ user.username }}</h1>
+        <h3>Change password: <a href="/password/change/">change</a></h3>
+   </div>
+{% endblock %}

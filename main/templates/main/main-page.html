@@ -1,0 +1,23 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+<style>
+    .main-page {margin: 30px}
+    .main-page a {text-decoration: none; font-size: 22px;}
+    .main-page ul { list-style-type:none; margin-left: -30px; margin-top: 30px}
+</style>
+    <div class="main-page">
+        <h1>Main Page</h1>
+        <h2>You are signed up as: {{ request.user }}</h2>
+        <ul>
+            {% if not request.user.is_authenticated %}
+               <li><a href="{% url 'register' %}">Regsiter</a></li>
+            {% endif %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'user_profile' %}">User profile</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
